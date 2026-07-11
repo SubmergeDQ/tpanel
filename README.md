@@ -54,7 +54,7 @@ http://<your-phone-ip>:8080
 
 ### First Time Setup
 1. Open the panel in your browser
-2. Create an admin password
+2. Enter the default password: "admin" (you can change this later)
 3. Place your Minecraft server `.jar` in the `minecraft/` directory (or use the JAR Manager to download one)
 4. Click **Start** on the dashboard
 
