@@ -263,6 +263,13 @@
             if (currentPage === 'console') appendConsoleLine(line);
         });
 
+        // 其它客户端调用了清除时，本端也同步清空显示与内存
+        socket.on('console:clear', () => {
+            consoleLines = [];
+            const output = document.getElementById('console-output');
+            if (output) output.innerHTML = '';
+        });
+
         socket.on('stats:update', (stats) => {
             systemStats = stats;
             serverStatus = stats.serverStatus;
@@ -1106,6 +1113,8 @@
             consoleLines = [];
             const output = document.getElementById('console-output');
             if (output) output.innerHTML = '';
+            // 同步清空后端内存缓冲，避免刷新页面时旧日志又回显
+            api('/api/server/console', { method: 'DELETE' }).catch(() => {});
         },
 
         // File Manager
