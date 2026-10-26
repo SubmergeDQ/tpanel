@@ -1593,6 +1593,17 @@ select {
         --bottom-nav-height: 72px;
     }
 
+    /* 移动端侧边栏脱离文档流后，顶层必须改为纵向排列，
+       否则移动端顶栏会和主内容并排，把内容挤成窄条 */
+    .app-layout {
+        flex-direction: column;
+    }
+
+    .mobile-header {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
     .sidebar {
         position: fixed;
         left: 0;
@@ -1768,6 +1779,17 @@ select {
     .page-title { 
         font-size: 1.5rem; 
         letter-spacing: -0.01em;
+    }
+
+    /* 窄屏下标题与多个操作按钮可能放不下，允许换行避免挤压溢出 */
+    .page-header.flex {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* 换行后的操作按钮统一靠右，避免单独落到左侧 */
+    .page-header.flex > .btn {
+        margin-left: auto;
     }
 
     .quick-actions {

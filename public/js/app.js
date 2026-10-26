@@ -841,7 +841,10 @@
 
                 const rows = validKeys.map(key => {
                     const val = props[key];
-                    const desc = descs[key] || '';
+                    // 优先使用前端翻译；后端新增属性无对应 key 时回退到接口返回的英文说明
+                    const descKey = 'props.desc.' + key;
+                    const translatedDesc = t(descKey);
+                    const desc = translatedDesc === descKey ? (descs[key] || '') : translatedDesc;
                     let inputHtml = '';
 
                     // Boolean fields
